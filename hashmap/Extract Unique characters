@@ -1,7 +1,6 @@
 Given a string, you need to remove all the duplicates. 
 That means, the output string should contain each character only once. The respective order of characters should remain same.
 
-```cpp
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -19,4 +18,3 @@ vector<int> removeDuplicates(int *arr,int size){
     }
 return output;
 }
-```
