@@ -1,50 +1,33 @@
 You are given with an array of integers and an integer K. Write a program to find and print all pairs which have difference K.
 Take difference as absolute.
 
+#include <bits/stdc++.h>
+using namespace std;
 
-void printPairs(int *input, int n, int k) {
+int getPairsWithDifferenceK(int *arr, int n, int k) {
 	// Write your code here
-    unordered_map<int,int> m;
-    for(int i=0 ; i< n ;i++)
-    {
-        m[input[i]]++;
-    }
-    
-    if(k!=0){
-    	for(int i=0 ; i<n ;i++)
-    	{
-     	
-        	if(m.count(input[i]-k)>0)
-        	{
-            	// m[input[i]]--; 
-            	int j=0;
-            	while(j<m[input[i]-k])
-            	{
-            	if((input[i]-k)<input[i])
-                	cout<<input[i]-k<<" "<<input[i]<<endl;
-            	else
-               		cout<<input[i] << " "<< input[i]-k<<endl;
-
-            	j++;  
-            	}
-        	}
-        
-    	}
-
+    unordered_map<int,int> ourMap;
+	for(int i=0;i<n;i++){
+		ourMap[arr[i]]++;
 	}
-    else if(k==0){
-     	for(int i=0;i<n;i++)
-        	{
-              if(m.count(input[i])>0)
-            	{
-              		for(int j=0;j<m[input[i]]-1;j++)
-             		{ cout<<input[i]<<" "<<input[i]<<endl;
-                    }
-               
-                		m[input[i]]--;
-                }
-            }
-         }
 
+	int count=0;
+	for(int i=0;i<n;i++){
+		int key1=arr[i]-k;
+		int key2=arr[i]+k;
+
+		if(key1!=key2){
+			if(ourMap.count(key1)>0){
+				count+=(ourMap[key1])*(ourMap[arr[i]]);
+			}
+			if(ourMap.count(key2)>0){
+				count+=(ourMap[key2])*(ourMap[arr[i]]);
+			}
+		}else{
+			count+=((ourMap[key1])*(ourMap[key1]-1))/2;
+		}
+
+		ourMap.erase(arr[i]);
+	}
+return count;
 }
-
