@@ -35,36 +35,31 @@ Sample Input 2 :
 Sample Output 2 :
 4
 
-#include <queue>
-int buyTicket (int *arr, int n, int k){
+#include<bits/stdc++.h>
+int buyTicket(int *arr, int n, int k) {
+    // Write your code here
+    queue<int> indexQueue;
+    priority_queue<int> pq;
     
-    queue<int> p; //a queue of indices
-    for(int i=0;i<n ;i++)
-         p.push(i);
-   
-    
-    priority_queue <int > pq;
-    //build a heap
-    for(int i=0 ; i<n ;i++)
-    {
+    for(int i=0;i<n;i++){
+        indexQueue.push(i);
         pq.push(arr[i]);
     }
     
     int time=0;
-
-while( p.front()!=k || pq.top()!= arr[p.front()] )  //unless ticket counter meets me and i am the priority .
-{   //if less priority send at end of queue 
-    if(pq.top()>arr[p.front()])
-    { int x=p.front();
-        p.pop();
-       p.push(x);
+    while(1){
+        if(indexQueue.front()==k && pq.top()==arr[k]){
+            time++;
+            return time;
+        }
+        else if(pq.top()==arr[indexQueue.front()]){
+            time++;
+            indexQueue.pop();
+            pq.pop();
+        }else{
+            int temp=indexQueue.front();
+            indexQueue.pop();
+            indexQueue.push(temp);
+        }
     }
-    
-    else if(pq.top()==arr[p.front()])
-    { pq.pop();
-      p.pop();
-       time++;			//incres time
-    }
-}
-    return time+1;  //now i will be getting the ticket
 }
