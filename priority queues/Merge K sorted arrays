@@ -1,26 +1,26 @@
  Given k different arrays, which are sorted individually (in ascending order).
  You need to merge all the given arrays such that output array should be sorted (in ascending order).
  
- #include <queue>
-#include <vector>
-vector<int> mergeKSortedArrays(vector<vector<int>*> input){
-    
-    priority_queue < int ,vector<int> , greater<int> > pq;
-    for(int i=0 ; i<input.size() ; i++)
-    {
-        for(int j=0 ; j<input[i]->size() ;j++)
-        {
-            pq.push(input[i]->at(j));
-        }
+#include<bits/stdc++.h>
+using namespace std;
+
+void kSortedArray(int input[],int n,int k){
+    priority_queue<int> pq;
+    for(int i=0;i<k;i++){
+        pq.push(input[i]);
     }
- 	
-    vector<int> ans;
     
-    while(!pq.empty())
-    {
-        ans.push_back(pq.top());
+    int j=0;
+    for(int i=k;i<n;i++){
+        input[j]=pq.top();
         pq.pop();
+        j++;
+        pq.push(input[i]);
+    }//till here sorts (n-k) elements as this loop starts from k & terminates @n
+
+    while(!pq.empty()){//for remaining elements
+        input[j]=pq.top();
+        pq.pop();
+        j++;
     }
-    
-    return ans;
 }
