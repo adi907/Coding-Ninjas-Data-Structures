@@ -6,34 +6,17 @@ Alternate nodes will be:  20, 40, and 60.
 Hence after deleting, the list will be:
 Output: 10 -> 30 -> 50 -> null
 
+#include<bits/stdc++.h>
 
-void delete_alternate_node_LinkedList(Node *head) {
-    
-    if(head==NULL)
-        return;
-    if(head->next==NULL)
-        return;
-   
-    int x=length(head);
-    
-        Node *p=head;
-        Node *q=head;
-    
-        for(int i=2 ; i <x ; i=i+2)
-        {	p=p->next;
-            Node *t=p;
-            p=p->next;
-            q->next=p;
-            delete t;  
-            q=p;
+void deleteAlternateNodes(Node *start) {
+    //Write your code here
+	Node* temp;
+  	while(start!=NULL){
+       temp=start->next;
+       if(temp!=NULL){
+            start->next=temp->next;
+            free(temp);
         }
-    
-    if(x%2==0)
-        {
-         p=p->next;
-        q->next=NULL;
-           delete p; 
-        
-        }
-   
+        start=start->next;
+   }
 }
