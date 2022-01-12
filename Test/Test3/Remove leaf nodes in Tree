@@ -1,0 +1,20 @@
+Given a binary tree, return the longest path from leaf to root. Longest means, a path which contain maximum number of nodes from leaf to root.
+
+#include<bits/stdc++.h>
+
+TreeNode<int>* removeLeafNodes(TreeNode<int>* root) {
+    // Write your code here
+    if(root==NULL){
+        return NULL;
+    }
+    if(root->numChildren()==0){
+        return NULL;    
+    }
+    for(int i=root->numChildren()-1;i>=0;i--){
+        TreeNode<int>* front=root->getChild(i);
+        if(removeLeafNodes(front)==NULL){
+            root->removeChild(i);
+        }
+    }
+	return root;
+}
