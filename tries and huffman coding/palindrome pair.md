@@ -3,7 +3,6 @@ The function should return either true or false. You don't need to print anythin
 
 ```cpp
 #include<bits/stdc++.h>
-// #include "Trie.h"
 using namespace std;
 
 class TrieNode {
@@ -44,10 +43,6 @@ class Trie {
         }
     }
 
-    void removeWord(string word){
-        removeWord(root,word);
-    }
-
    private:
     bool add(TrieNode *root, string word) {
         // Base case
@@ -81,35 +76,6 @@ class Trie {
         }
         return search(root->children[index],word.substr(1));
     }
-
-    void removeWord(TrieNode* root,string word){
-            if(word.size()==0){
-                root->isTerminal=false;
-                return;
-            }
-
-            int index=word[0]-'a';
-            TrieNode* child;
-            
-            if(root->children[index]!=NULL){
-                child=root->children[index];
-            }else{
-                return;
-            }
-            
-            removeWord(child,word.substr(1));
-
-            //delete the TrieNode if of no use
-            if(child->isTerminal==false){
-                for(int i=0;i<26;i++){
-                    if(child->children[i]!=NULL){
-                        return;
-                    }
-                }
-                delete child;
-                root->children[index]=NULL;
-            }
-        }
 
    public:
     string reverse(string s){
