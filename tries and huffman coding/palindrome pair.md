@@ -1,6 +1,7 @@
 Given 'n' number of words, you need to find if there exist any two words which can be joined to make a palindrome or any word itself is a palindrome.
 The function should return either true or false. You don't need to print anything.
 
+```cpp
 #include<bits/stdc++.h>
 // #include "Trie.h"
 using namespace std;
@@ -163,3 +164,4 @@ int main(){
     
 return 0;
 }
+```
