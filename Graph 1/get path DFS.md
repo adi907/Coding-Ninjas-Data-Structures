@@ -6,31 +6,32 @@ Print the path in reverse order. That is, print v2 first, then intermediate vert
 
 
 ```cpp
-
 #include <iostream>
 #include<vector>
 using namespace std;
 
-bool getPath(int** edges,bool* visited,int n,int start,int end,vector<int> &res){
+vector<int>* getPath(int** edges,bool* visited,int n,int start, int end){
     visited[start]=true;
+    vector<int>* output=new vector<int>();
     if(start==end){
-        res.push_back(start);
-        return true;
+        output->push_back(start);
+        return output;
     }
-    
+
     for(int i=0;i<n;i++){
         if(edges[start][i]==1 && !visited[i]){
-            if(getPath(edges,visited,n,i,end,res)){
-                res.push_back(start);
-                return true;
+            output=getPath(edges,visited,n,i,end);
+            if(output!=NULL){
+                output->push_back(start);
+                return output;
             }
         }
     }
-    return false;
+    return NULL;
 }
 
+
 int main() {
-    // Write your code here
     int n,e;
     cin>>n>>e;
     
@@ -53,14 +54,21 @@ int main() {
     int start,end;
     cin>>start>>end;
     
-    vector<int> output;
-    
-    if(getPath(edges,visited,n,start,end,output)){
-        for(int i=0;i<output.size();i++){
-            cout<<output[i]<<" ";
+    vector<int>* vec=getPath(edges,visited,n,start,end);
+    if(vec!=NULL){
+        for(int i=0;i<vec->size();i++){
+            cout<<(*vec)[i]<<" ";
         }
     }
+    else{
+        return 0;
+    }
     
+    for(int i=0;i<n;i++){
+        delete[] edges[i];
+    }
+    delete[] edges;
+    delete[] visited;  
 }
 
 ```
