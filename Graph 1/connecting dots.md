@@ -11,64 +11,94 @@ Assume input to be 0-indexed based.
 #include<bits/stdc++.h>
 using namespace std;
 
-void initialize(bool ** visited,int n,int m){
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++)
-            visited[i][j]=false;
-    }
+bool checker(vector<vector<char>> &board, int n, int m, int i, int j, bool** visited, char current_character){
+	int condition_up=0;
+	if (i - 1 > 0){
+		condition_up = (int)visited[i - 1][j];
+	}
+
+	int condition_down=0;
+	if (i + 1 < n - 1){
+		condition_down= (int)visited[i + 1][j];
+	}
+
+	int condition_right=0;
+	if (j < m + 1){
+		condition_right = (int)visited[i][j + 1];
+	}
+
+	int condition_left=0;
+	if (j > 0){
+		condition_left= (int)visited[i][j - 1];
+	}
+
+	int sum = condition_up + condition_down + condition_right + condition_left;
+
+	if (sum == 2){
+		return true;
+	}
+    
+	bool check = false;
+	if (i > 0 && board[i - 1][j] == current_character && !visited[i - 1][j]){//up
+		visited[i - 1][j] = true;
+		if (checker(board, n, m, i - 1, j, visited, current_character)){
+			check = true;
+		}else{
+			visited[i - 1][j] = false;
+		}
+	}
+
+	if(j > 0 && board[i][j-1] == current_character && !visited[i][j-1]){//left
+		visited[i][j-1] = true;
+		if (checker(board, n, m, i, j-1, visited, current_character)){
+			check = true;
+		}else{
+			visited[i][j-1] = false;
+		}
+	}
+
+	if (i < n-1 && board[i +1][j] == current_character && !visited[i + 1][j]){//down
+		visited[i + 1][j] = true;
+		if (checker(board, n, m, i + 1, j, visited, current_character)){
+			check = true;
+		}else{
+			visited[i + 1][j] = false;
+		}
+	}
+
+	if(j < m-1 && board[i][j+1] == current_character && !visited[i][j+1]){//right
+		visited[i][j+1] = true;
+		if(checker(board, n, m, i, j+1, visited, current_character)){
+			check = true;
+		}else{
+			visited[i][j+1] = false;
+		}
+	}
+	return check;
 }
 
+int hasCycle(vector<vector<char>> &board,int n, int m){
+	bool** visited =new bool* [n];
+	for(int i = 0; i < n; i++){
+		visited[i] = new bool[m];
+		for (int j = 0; j < m; j++){
+			visited[i][j] = false;
+		}
+	}
 
-bool dfs(vector<vector<char>> &board,char col,int pi,int pj,int i,int j,int n,int m,bool **visited){
-    bool d1=(i+1<n && !(i+1==pi && j==pj) && visited[i+1][j]);
-    bool d2=(j+1<m && !(i==pi && j+1==pj) && visited[i][j+1]);
-    bool d3=(i-1>=0 && !(i-1==pi && j==pj)&& visited[i-1][j]);
-    bool d4=(j-1>=0 && !(i==pi && j-1==pj) && visited[i][j-1]);
-    
-    if(d1 || d2 || d3 || d4){
-        return true;
-    }
-    
-    bool ans=false;
-    visited[i][j]=true;
-    if(i+1<n && board[i+1][j]==col && !visited[i+1][j]){
-        ans=ans || dfs(board,col,i,j,i+1,j,n,m,visited);
-    }
-    
-    if(j+1<m && board[i][j+1]==col && !visited[i][j+1]){
-        ans=ans || dfs(board,col,i,j,i,j+1,n,m,visited);
-    }
-    
-    if(i-1>=0 && board[i-1][j]==col && !visited[i-1][j]){
-        ans=ans || dfs(board,col,i,j,i-1,j,n,m,visited);
-    }
-    
-    if(j-1>=0 && board[i][j-1]==col && !visited[i][j-1]){
-        ans=ans || dfs(board,col,i,j,i,j-1,n,m,visited);
-    }
-    return ans;
-}
-
-bool hasCycle(vector<vector<char>> &board,int n, int m){
-    bool **visited=new bool*[n];
-    for(int i=0;i<n;i++){
-        visited[i]=new bool[m];
-    }
-
-    initialize(visited,n,m);
-
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
-            if(!visited[i][j]){
-                char color=board[i][j];
-                if(dfs(board,color,i,j,i,j,n,m,visited)){
-                    return true;
-                }
-                initialize(visited,n,m);
-            }
-        }
-    }
-    return false;
+	for (int i = 0; i < n; i++){
+		for (int j = 0; j < m; j++){
+			if (checker(board, n, m, i, j, visited, board[i][j])){
+				return 1;
+			}
+			for (int p = 0; p < n; p++){
+				for (int q = 0; q < m; q++){
+					visited[p][q] = false;
+				}
+			}
+		}
+	}
+	return 0;
 }
 
 int main() {
