@@ -61,8 +61,9 @@ bool hasCycle(vector<vector<char>> &board, int n, int m) {
     bool ans = false;
     for(int i = 0; i<n; i++){
         for(int j = 0; j<m; j++){
-            ans = helper(board, n, m, visited, i, j, 0);
-            if(ans) return true;
+            if(helper(board, n, m, visited, i, j, 0)){
+                return true;
+             }
         }
     }
 return false;
