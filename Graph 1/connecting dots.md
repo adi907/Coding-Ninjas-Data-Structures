@@ -11,79 +11,58 @@ Assume input to be 0-indexed based.
 #include<bits/stdc++.h>
 using namespace std;
 
-bool hasCycle(vector<vector<char>> &board, int n, int m, int i, int j,bool** &visited, char ch) {
-	int up=0, down=0, left=0, right=0;
-    if(i-1>=0){
-        up = (int)visited[i-1][j];
-    }
-    if(i+1<n){
-        down = (int)visited[i+1][j];
-    }
-    if(j-1>=0){
-        left = (int)board[i][j-1];
-    }
-    if(j+1<m){
-        right = (int)board[i][j+1];
-    }
-
-    if((up+down+left+right) == 2){//base case for chain formation
+bool helper(vector<vector<char>> &board, int n, int m, bool** visited, int i, int j, int count){
+    if(count==5){
         return true;
     }
     
-    bool found = false;
-    // check up 
-    if(i-1>=0 && board[i-1][j]==ch && !visited[i-1][j]){
-        visited[i-1][j] = true;
-        if(hasCycle(board,n,m,i-1,j,visited,ch)){
-            found = true;
-        }else{
-            board[i-1][j] = false;
-        }
+    visited[i][j] = true;
+    bool ans = false;
+    if(i-1>=0 && j+1<m && board[i-1][j+1] == board[i][j] && visited[i-1][j+1] == false && !ans){
+        ans = helper(board, n, m, visited, i-1, j+1, count+1); 
     }
-    // check left
-    if(j-1>=0 && board[i][j-1]==ch && !visited[i][j-1]){
-        visited[i][j-1] = true;
-        if(hasCycle(board,n,m,i,j-1,visited,ch)){
-            found = true;
-        }else{
-            board[i][j-1] = false;
-        }
+    if(i-1>=0 && board[i-1][j] == board[i][j] && visited[i-1][j] == false && !ans){
+        ans = helper(board, n, m, visited, i-1, j, count+1);  
     }
-    // check right
-    if(i+1<n && board[i+1][j]==ch && !visited[i+1][j]){
-        visited[i+1][j] = true;
-        if(hasCycle(board,n,m,i+1,j,visited,ch)){
-            found = true; 
-        }else{
-            board[i+1][j] = false;
-        }
+    if(i-1>=0 && j-1>=0 && board[i-1][j-1] == board[i][j] && visited[i-1][j-1] == false && !ans){
+        ans = helper(board, n, m, visited, i-1, j-1, count+1);  
     }
-    // check down
-    if(j+1 <m && board[i][j+1]==ch && !visited[i][j+1]){
-        visited[i][j+1] = true;
-        if(hasCycle(board, n, m, i, j+1, visited, ch)){
-            found = true;
-        }else{
-            board[i][j+1] = false;
-        }
+    if(j-1>=0 && board[i][j-1] == board[i][j] && visited[i][j-1] == false && !ans){
+        ans = helper(board, n, m, visited, i, j-1, count+1);   
     }
-    return found;
+    if(i+1<n && j-1>=0 && board[i+1][j-1] == board[i][j] && visited[i+1][j-1] == false && !ans){
+        ans = helper(board, n, m, visited, i+1, j-1, count+1);
+    }
+    if(i+1<n && board[i+1][j] == board[i][j] && visited[i+1][j] == false && !ans){
+        ans = helper(board, n, m, visited, i+1, j, count+1);
+    }
+    if(i+1<n && j+1<m && board[i+1][j+1] == board[i][j] && visited[i+1][j+1] == false && !ans){
+        ans = helper(board, n, m, visited, i+1, j+1, count+1);
+    }
+    if(j+1<m && board[i][j+1] == board[i][j] && visited[i][j+1] == false && !ans){
+        ans = helper(board, n, m, visited, i, j+1, count+1);
+    }
+    
+    if(!ans){
+        visited[i][j] == false;
+    }
+    
+return ans;
 }
 
-bool hasCycle(vector<vector<char> > &board, int n, int m) {
-    bool** visited=new bool*[n];
-    for(int i=0;i<n;i++){
-        visited[i]=new bool[m];
-        for(int j=0;j<m;j++){
-            visited[i][j]=false;
+bool hasCycle(vector<vector<char>> &board, int n, int m) {
+    bool** visited = new bool*[n];
+    for(int i = 0; i<n; i++){
+        visited[i] = new bool[m];
+        for(int j = 0; j<m; j++){
+            visited[i][j] = false;
         }
     }
-
-    for(int i=0; i<n; i++){
-        for(int j=0; j<m; j++){
-            if(hasCycle(board,n,m,i,j, visited,board[i][j])){
-                return true;
-            }
+    bool ans = false;
+    for(int i = 0; i<n; i++){
+        for(int j = 0; j<m; j++){
+            ans = helper(board, n, m, visited, i, j, 0);
+            if(ans) return true;
         }
     }
 return false;
