@@ -74,13 +74,10 @@ int main() {
     weights[0]=0;
 
     for(int i=0;i<v;i++){
-        for(int j=0;j<v;j++){
-            int f,e,w;
-            cin>>f>>e>>w;
-            input[f][e]=w;
-            input[e][f]=w;
-            
-        }
+        int f,e,w;
+        cin>>f>>e>>w;
+        input[f][e]=w;
+        input[e][f]=w;
     }
 
     prims(input,weights,parents,visited,v);
