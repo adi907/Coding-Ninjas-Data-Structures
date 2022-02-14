@@ -14,9 +14,6 @@ cba
 #include <bits/stdc++.h>
 using namespace std;
 
-#include <string>
-using namespace std;
-
 int returnPermutations(string input, string output[]){
     if(input.size()==1){
         output[0]=input[0];
