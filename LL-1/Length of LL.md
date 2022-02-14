@@ -1,16 +1,20 @@
 Given a linked list, find and return the length of input LL. Do it iteratively.
 
-int length(Node *head) {
-    
-    int count=0;
-    while(head)
-    {
-        count++;
-        head=head->next;
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+int length(Node *head){
+    //Write your code here
+    Node* start=head;
+    int result=0;
+    while(start!=NULL){
+        result++;
+        start=start->next;
     }
-    return count;
+    return result;
 }
-#include <iostream>
+
 class Node{
 public:
     int data;
@@ -20,9 +24,6 @@ public:
         this -> next = NULL;
     }
 };
-
-using namespace std;
-
 
 Node* takeinput() {
     int data;
@@ -59,3 +60,4 @@ int main() {
     cout << length(head);
     return 0;
 }
+```
