@@ -1,6 +1,11 @@
 // input - input array
 // size - length of input array
 // element - value to be searched
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
 int B(int a[],int s,int e, int i)
 {
     if(s>e)
@@ -18,3 +23,17 @@ int binarySearch(int input[], int size, int element) {
      int ans =B(input ,start,end,element);
     return ans;
 }
+
+int main() {
+    int input[100000],length,element, ans;
+    cin >> length;
+    for(int i =0;i<length;i++)
+    { 
+        cin >> input[i];;
+    }
+
+    cin>>element;
+    ans = binarySearch(input, length, element);
+    cout<< ans << endl;
+}
+```
