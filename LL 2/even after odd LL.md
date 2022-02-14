@@ -57,24 +57,16 @@ public:
 	}
 };
 
-using namespace std;
-#include "solution.h"
-
-Node *takeinput()
-{
+Node *takeinput(){
 	int data;
 	cin >> data;
 	Node *head = NULL, *tail = NULL;
-	while (data != -1)
-	{
+	while (data != -1){
 		Node *newnode = new Node(data);
-		if (head == NULL)
-		{
+		if (head == NULL){
 			head = newnode;
 			tail = newnode;
-		}
-		else
-		{
+		}else{
 			tail->next = newnode;
 			tail = newnode;
 		}
