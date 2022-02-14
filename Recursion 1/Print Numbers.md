@@ -1,4 +1,5 @@
-#include<iostream>
+```cpp
+#include<bits/stdc++.h>
 using namespace std;
 
 void print(int n){
@@ -6,13 +7,16 @@ void print(int n){
         cout << n << " ";
         return;
     }
-    
     print(n - 1);
     cout << n << " ";
+    return;
 }
+
 int main(){
     int n;
     cin >> n;
   
     print(n);
 }
+
+```
