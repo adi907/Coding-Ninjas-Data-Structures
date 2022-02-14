@@ -1,19 +1,16 @@
-#include<iostream>
-
+```cpp
+#include<bits/stdc++.h>
 using namespace std;
 
 bool checkNumber(int input[], int size, int x) {
-  if(size==0)
-      return false;
-    
- if(input[0]==x)
-     return true;
-    
-    bool checksmaller= checkNumber(input +1,size-1,x);
-    return checksmaller;
-
+	if(size==0){
+        return 0;
+    }
+    if(input[size-1]==x){
+        return 1;
+    }
+    return checkNumber(input,size-1,x);
 }
-
 
 int main(){
     int n;
@@ -36,5 +33,4 @@ int main(){
         cout << "false" << endl;
     }
 }
-
-
+```
