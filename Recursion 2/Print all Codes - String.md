@@ -17,9 +17,7 @@ void helper(string input,string output){
     if(input.size()==0){
         cout<<output<<endl;
         return;
-    }
-    
-    
+    }   
 }
 
 void printAllPossibleCodes(string input) {
