@@ -17,23 +17,30 @@ Sample Output 2 :
 13
 */
 
-#include <iostream>
+```cpp
+#include <bits/stdc++.h>
 using namespace std;
-int staircase(int n){
-    if(n == 1 || n == 0){
+
+int staircase_help(int n,int step){
+    if(n==step){
         return 1;
     }
-    else if(n == 2){
-        return 2;
+    if(step>n){
+        return 0;
     }
-    else{
-        return staircase(n-1) + staircase(n-2) + staircase(n-3);
-    }
+    return staircase_help(n,step+1)+staircase_help(n,step+2)+staircase_help(n,step+3);
+    
 }
+
+int staircase(int n){
+    int ans=staircase_help(n,0);
+    return ans;
+}
+
 int main() {
     int n, output;
     cin >> n;
     output = staircase(n);
     cout << output <<endl;
 }
-
+```
