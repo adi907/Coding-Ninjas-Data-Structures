@@ -31,40 +31,34 @@ Sample Input 1 :
 Sample Output 1 :
 10 + i12
 
-
-class ComplexNumbers {
-    // Complete this class
-    private:
-    int real;
-    int imag;
-    
-    public:
-    ComplexNumbers(int real ,int imag)
-    {
-        this->real=real;
-        this->imag=imag;
-    }
-    
-    void print()
-    {
-        cout<<real<<" "<<"+"<<" "<<"i"<<imag<<endl;
-        
-    }
-    void plus( ComplexNumbers c2)
-    {
-        this->real=real+c2.real;       ///this is nnot compulsory to use as it already know about it;
-        imag=imag+c2.imag;
-    }
-    void multiply(ComplexNumbers const & c2 )
-    {
-        int x=(real*c2.real)-(imag*c2.imag);
-        int y=(real*c2.imag)+(imag*c2.real);
-        real=x;
-        imag=y;
-    }
-#include <iostream>
+```cpp
+#include<bits/stdc++.h>
 using namespace std;
 
+class ComplexNumbers {
+    private:
+    	int real;
+    	int imaginary;
+    public:
+    	ComplexNumbers(int real,int img){
+            this->real=real;
+            this->imaginary=img;
+        }
+    	void plus(const ComplexNumbers &c2){
+            this->real+=c2.real;
+            this->imaginary+=c2.imaginary;
+        }
+    	void multiply(const ComplexNumbers &c2){
+            int a,b;
+            a=(this->real*c2.real)-(this->imaginary*c2.imaginary);
+            b=(this->real*c2.imaginary)+(this->imaginary*c2.real);
+            this->real=a;
+            this->imaginary=b;
+        }
+        void print(){
+            cout<<real<<" + i"<<imaginary;
+        }
+};
 
 int main() {
     int real1, imaginary1, real2, imaginary2;
@@ -90,3 +84,4 @@ int main() {
         return 0;
     }   
 }
+```
