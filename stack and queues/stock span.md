@@ -8,40 +8,54 @@ So count is 3 till 0th day.
 
 Given an input array with all stock prices, you need to return the array with corresponding spans of each day.
 
+```cpp
 
-int* stockSpan(int *price, int size) {
-	// Write your code here
-    int output[size];
-     stack<int> s;
+#include<bits/stdc++.h>
+using namespace std;
+
+int* stockSpan(int *price, int size)  {
+    int *output=new int[size];
+    stack<int> s;
     
     output[0]=1;
     s.push(0);
-	for(int i=1;i<size;i++)
-    {
-        if(price[i]< price[s.top()])
-        {
+	for(int i=1;i<size;i++){
+        if(price[i]< price[s.top()]){
             s.push(i);
             output[i]=1;
-        }
-        else
-        {  
-            while(s.top()!=NULL && price[i]>price[s.top()])
-              { 
-                  s.pop();
-               
-              }
-            if(s.top()==NULL)
+        }else{  
+        	while(s.empty()!=1 && price[i]>price[s.top()]){ 
+                s.pop();
+            }
+            if(s.empty()){
                 output[i]=i+1;
-            else
+            }else{
                 output[i]=i-s.top();
-            
+            }
             s.push(i);
         }
-        
       }
-    for(int i=0;i<size;i++)
-    {
-        price[i]=output[i];
-    }
-return price;
+return output;
 }
+
+int main() {
+    int size;
+    cin >> size;
+
+    int *input = new int[size];
+    for (int i = 0; i < size; i++) {
+        cin >> input[i];
+    }
+
+    int *output = stockSpan(input, size);
+    for (int i = 0; i < size; i++) {
+        cout << output[i] << " ";
+    }
+
+    cout << "\n";
+
+    delete[] input;
+    delete[] output;
+}
+
+```
