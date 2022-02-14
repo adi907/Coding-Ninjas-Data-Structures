@@ -1,13 +1,14 @@
-#include<iostream>
-
+```cpp
+#include<bits/stdc++.h>
 using namespace std;
 
 int count(int n){
+    int smallAns;
     if(n == 0){
         return 0;
     }
-    
-    return  count(n / 10) + 1;
+    smallAns = 1+count(n / 10);
+    return smallAns;
 }
 
 int main(){
@@ -16,3 +17,4 @@ int main(){
   
     cout << count(n) << endl;
 }
+```
