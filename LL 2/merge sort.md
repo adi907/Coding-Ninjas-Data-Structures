@@ -1,5 +1,6 @@
 Sort a given linked list using Merge Sort.  
 
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 
