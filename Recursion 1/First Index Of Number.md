@@ -1,22 +1,18 @@
-#include<iostream>
+
+```cpp
+#include<bits/stdc++.h>
 using namespace std;
 
-int help(int input[],int size,int x,int i){
-    
-    if(size==0)
-        return -1;
-    if(input[0]==x)
-        return i;
-    
-    help(input+1,size-1,x,i+1);
-}
-
 int firstIndex(int input[], int size, int x) {
- int i=0;
-    int ans=help(input, size, x, i);
-    return ans;
+    static int result=-1;
+	if(size==0){
+        return result;
+    }
+    if(input[size-1]==x){
+         result=size-1;
+    }
+    return firstIndex(input,size-1,x);
 }
-
 
 int main(){
     int n;
@@ -35,5 +31,4 @@ int main(){
     cout << firstIndex(input, n, x) << endl;
 
 }
-
-
+```
