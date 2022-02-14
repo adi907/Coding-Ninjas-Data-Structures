@@ -53,9 +53,6 @@ public:
 	}
 };
 
-using namespace std;
-#include "solution.h"
-
 Node *takeinput(){
 	int data;
 	cin >> data;
