@@ -13,10 +13,6 @@ kw
 #include<bits/stdc++.h>
 using namespace std;
 
-#include <string.h>
-#include<bits/stdc++.h>
-using namespace std;
-
 void helper(string input,string output){
     if(input.size()==0){
         cout<<output<<endl;
