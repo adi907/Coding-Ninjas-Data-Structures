@@ -1,5 +1,6 @@
 Given a string, compute recursively a new string where all appearances of "pi" have been replaced by "3.14".
 
+```cpp
 include<bits/stdc++.h>
 using namespace std;
 
