@@ -1,13 +1,12 @@
+```cpp
 #include<iostream>
 using namespace std;
 
 int sum(int input[], int n) {
-  if(n==0)
-      return 0;
-    
-   int total= input[0] + sum (input+1,n-1);
-    return total;
-
+	if(n==0){
+        return 0; 
+    }    
+    return  input[n-1]+sum(input,n-1);
 }
 
 int main(){
@@ -22,3 +21,4 @@ int main(){
     
     cout << sum(input, n) << endl;
 }
+```
