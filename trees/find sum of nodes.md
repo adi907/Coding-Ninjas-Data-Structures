@@ -18,8 +18,6 @@ class TreeNode {
     }
 };
 
-#include "solution.h"
-
 TreeNode<int>* takeInputLevelWise() {
     int rootData;
     cin >> rootData;
