@@ -19,9 +19,10 @@ Sample Output :
 40:
 50:
 */
-#include <iostream>
+
+```cpp
+#include <bits/stdc++.h>
 using namespace std;
-#include <vector>
 
 template <typename T>
 class TreeNode {
@@ -40,9 +41,6 @@ public:
     }
     
 };
-
-
-#include <queue>
 
 
 TreeNode<int>* takeInputLevelWise() {
@@ -68,37 +66,35 @@ TreeNode<int>* takeInputLevelWise() {
     }
     return root;
 }
+
 void printLevelWise(TreeNode<int>* root) {
-    
-    if(root->data==NULL)
-      return;
-    
-   
-    queue<TreeNode<int>*> pendingnodes;
-    pendingnodes.push(root);
-   
-   while(pendingnodes.size()!=0)
-   {  
-       TreeNode<int>*front=pendingnodes.front();
-        pendingnodes.pop();
-       cout<<front->data<<":";
-  	 for(int i=0;i<front->children.size();i++)
-  	 {  
-  	     pendingnodes.push(front->children[i]);
-         if(i==front->children.size()-1)
-              cout<<front->children[i]->data;
-         
-         else
-  	         cout<<front->children[i]->data<<",";
- 	  }
- 	  
-        cout<<endl;
-  	 
-   }
-    
+    // Write your code here
+   if(root==NULL){
+        return;
+    }
+    queue<TreeNode<int>*> pendingNodes;
+    pendingNodes.push(root);
+
+    while(pendingNodes.size()!=0){
+        TreeNode<int> *front=pendingNodes.front();
+        pendingNodes.pop();
+
+        cout<<front->data<<":";
+        int numChild=front->children.size();
+        for(int i=0;i<numChild;i++){
+            if(i==numChild-1){
+                cout<<(front->children[i])->data;
+                pendingNodes.push(front->children[i]);
+            }else{
+                cout<<(front->children[i])->data<<",";
+                pendingNodes.push(front->children[i]);
+            }
+        }cout<<endl;
+    }   
 }
+
 int main() {
     TreeNode<int>* root = takeInputLevelWise();
     printLevelWise(root);
 }
-
+```
