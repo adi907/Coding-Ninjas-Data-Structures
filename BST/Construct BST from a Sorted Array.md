@@ -16,9 +16,6 @@ class BinaryTreeNode {
     }
 };
 
-using namespace std;
-#include "solution.h"
-
 BinaryTreeNode<int>* takeInput() {
     int rootData;
     cin >> rootData;
