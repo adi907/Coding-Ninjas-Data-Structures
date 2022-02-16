@@ -35,9 +35,11 @@ Sample Input 2 :
 Sample Output 2 :
 4
 
+```cpp
 #include<bits/stdc++.h>
+using namespace std;
+
 int buyTicket(int *arr, int n, int k) {
-    // Write your code here
     queue<int> indexQueue;
     priority_queue<int> pq;
     
@@ -63,3 +65,22 @@ int buyTicket(int *arr, int n, int k) {
         }
     }
 }
+                          
+int main() {
+    int n;
+    cin >> n;
+
+    int *arr = new int[n];
+
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    int k;
+    cin >> k;
+
+    cout << buyTicket(arr, n, k);
+
+    delete[] arr;
+}
+```
