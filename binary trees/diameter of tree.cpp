@@ -38,4 +38,3 @@ pair<int, int> heightDiameter(BinaryTreeNode<int>* root) {
 	p.second = diameter;
 	return p;
 }
-
