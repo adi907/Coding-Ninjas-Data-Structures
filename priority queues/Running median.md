@@ -29,10 +29,11 @@ S = {6, 2, 1, 3} -> {1, 2, 3, 6}, median = 2
 S = {6, 2, 1, 3, 7} -> {1, 2, 3, 6, 7}, median = 3
 S = {6, 2, 1, 3, 7, 5} -> {1, 2, 3, 5, 6, 7}, median = 4
 
+```cpp
 #include<bits/stdc++.h>
+using namespace std;
 
 void findMedian(int *arr, int n){
-    // Write your code here
     if(n==0){
         return;
     }
@@ -69,3 +70,19 @@ void findMedian(int *arr, int n){
         }
     }
 }
+
+int main() {
+    int n;
+    cin >> n;
+
+    int* arr = new int[n];
+
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+    }
+
+    findMedian(arr,n);
+
+    delete[] arr;
+}
+```
