@@ -2,6 +2,7 @@
   Write a program to find k largest numbers from given array. You need to save them in an array and return it.
 Time complexity should be O(nlogk) and space complexity should be not more than O(k).
 
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 
