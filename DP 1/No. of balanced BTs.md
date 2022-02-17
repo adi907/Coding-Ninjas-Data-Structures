@@ -2,11 +2,12 @@ Given an integer h, find the possible number of balanced binary trees of height 
 You just need to return the count of possible binary trees which are balanced.
 This number can be huge, so return output modulus 10^9 + 7.
 
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
 
-//brute force
-#include<cmath>
-int balancedBTs(int h) {
- if(h<=1) return 1;
+int balancedBTs(int h){
+	if(h<=1) return 1;
     
     int x= balancedBTs(h-1);
     int y =balancedBTs(h-2);
@@ -17,25 +18,12 @@ int balancedBTs(int h) {
 
     int ans = (temp1 +temp2 ) %mod;
     
-    return ans;
+    return ans;   
 }
 
-// dp
-#include<cmath>
-int binaryTreesOfHeightH(int h) {
-    
-    int dp[h+1];
-    
-    dp[0]=1;
-    dp[1]=1;
-    
-    int mod = (int) (pow(10,9)+ 7);
-    for(int i=2 ;i<=h; i++)
-    {
-        dp[i]=(int)( ( (long)(dp[i-1])*dp[i-1] )%mod + (2*(long)(dp[i-1])*dp[i-2])%mod  ) % mod;
-        
-    }
-        
-return dp[h];
+int main() {
+    int n;
+    cin >> n;
+    cout << balancedBTs(n);
 }
-
+```
