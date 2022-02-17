@@ -3,6 +3,10 @@ For eg. if a = 10 and b = 2, only way to represent 10 as -
 10 = 1^2 + 3^2 
 Hence, answer is 1.
 
+```cpp
+#include<bits/stdc++.h>
+using namepsace std;
+
 int helper(int x,int n,int curNo,int *dp){
     if(x<0){
         return 0;
@@ -19,7 +23,8 @@ int helper(int x,int n,int curNo,int *dp){
     dp[x]=ans;
     return ans;    
 }
-int allWays(int x,int n){
+
+int getAllWays(int x, int n) {
     int dp[100000];
     for(int i=0;i<100000;i++){
         dp[i]=-1;
@@ -27,21 +32,9 @@ int allWays(int x,int n){
     return helper(x,n,1,dp);
 }
 
-
-
-int check(int x,int n,int curr_num,int curr_sum){
-    int res=0;
-    int p = pow(curr_num,n);
-    while(p+curr_sum<x){
-        res += check(x,n,curr_num+1,curr_sum+p);
-        curr_num++;
-        p=pow(curr_num,n);
-    }
-    if(p+curr_sum==x)
-        res++;
-    return res;
+int main(){
+    int a, b;
+    cin >> a >> b;
+    cout << getAllWays(a, b);
 }
-
-int allWays(int x, int n) {
-    return check(x,n,1,0);
-}
+```
