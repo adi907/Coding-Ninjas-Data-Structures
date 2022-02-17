@@ -1,4 +1,6 @@
+```cpp
 #include<bits/stdc++.h>
+using namespace std;
 
 bool split_help(int input[],int n,int start,int sum1,int sum2){
     if(start==n){
@@ -18,3 +20,20 @@ bool split_help(int input[],int n,int start,int sum1,int sum2){
 bool splitArray(int *input, int size) {
     return split_help(input,size,0,0,0);
 }
+
+int main() {
+	int size;
+	cin>>size;
+	int *input=new int[1+size];	
+	
+	for(int i=0;i<size;i++)
+		cin>>input[i];
+	
+    if(splitArray(input, size)) {
+        cout << "true" << endl;
+    }else{
+        cout << "false" << endl;
+    }
+return 0;
+}
+```
