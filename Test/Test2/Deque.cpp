@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
+using namespace std;
 
 class Deque {
-    // Complete this class
     int *data;
   	int front;
   	int rear;
