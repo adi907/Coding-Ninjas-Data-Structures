@@ -1,5 +1,3 @@
-// brute force
-
 ```cpp
 
 #include<bits/stdc++.h>
