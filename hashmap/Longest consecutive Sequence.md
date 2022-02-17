@@ -1,10 +1,12 @@
 You are given with an array of integers that contain numbers in random order.
 Write a program to find the longest possible sequence of consecutive numbers using the numbers from given array.
 
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 
 vector<int> longestConsecutiveIncreasingSequence(int *arr, int n) {
+    // Your Code goes here
     unordered_map<int,bool> ourMap;
     unordered_map<int,int> indexMap;
     for(int i=0;i<n;i++){
@@ -50,7 +52,9 @@ vector<int> longestConsecutiveIncreasingSequence(int *arr, int n) {
 				maxLength=length;
                 startc=start;
 			}else if(length==maxLength){
-                if(indexMap[start]<indexMap[startc]){
+				int a=indexMap[startc];
+                int b=indexMap[start];
+                if(b<a){
                     startc=start;
                 }
 			}
@@ -65,4 +69,22 @@ vector<int> longestConsecutiveIncreasingSequence(int *arr, int n) {
 return v;
 }
 
+int main() {
+    int size;
+    cin >> size;
 
+    int* arr = new int[size];
+
+    for (int i = 0; i < size; i++) {
+        cin >> arr[i];
+    }
+
+    vector<int> ans = longestConsecutiveIncreasingSequence(arr, size);
+
+    for (auto i = ans.begin(); i != ans.end(); ++i)
+        cout << *i << " ";
+
+    delete[] arr;
+}
+
+```
