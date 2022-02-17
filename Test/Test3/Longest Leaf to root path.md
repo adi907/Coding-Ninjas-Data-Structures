@@ -18,9 +18,9 @@ class BinaryTreeNode {
     }
 };
 
-BinaryTreeNode<int>* takeInput() {
+BinaryTreeNode<int>* takeInput(){
     int rootData;
-    //cout << "Enter root data : ";
+
     cin >> rootData;
     if(rootData == -1) {
         return NULL;
@@ -32,14 +32,14 @@ BinaryTreeNode<int>* takeInput() {
         BinaryTreeNode<int> *currentNode = q.front();
 	q.pop();
         int leftChild, rightChild;
-        //cout << "Enter left child of " << currentNode -> data << " : ";
+
         cin >> leftChild;
         if(leftChild != -1) {
             BinaryTreeNode<int>* leftNode = new BinaryTreeNode<int>(leftChild);
             currentNode -> left =leftNode;
             q.push(leftNode);
         }
-        //cout << "Enter right child of " << currentNode -> data << " : ";
+
         cin >> rightChild;
         if(rightChild != -1) {
             BinaryTreeNode<int>* rightNode = new BinaryTreeNode<int>(rightChild);
