@@ -1,7 +1,9 @@
 Given a large number represented in the form of a linked list. Write code to increment the number by 1 in-place(i.e. without using extra space).
 
- #include<bits/stdc++.h>
- 
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
 class Node{
 public:
     int data;
@@ -51,3 +53,40 @@ Node *addOneUtil(Node *head) {
     }
 return res; 
 }
+
+Node* takeinput() {
+    int data;
+    cin >> data;
+    Node* head = NULL, *tail = NULL;
+    while(data != -1){
+        Node *newNode = new Node(data);
+        if(head == NULL)                  {
+            head = newNode;
+            tail = newNode;
+        }
+        else{
+            tail -> next = newNode;
+            tail = newNode;
+        }
+        cin >> data;
+    }
+    return head;
+}
+
+void print(Node *head) {
+    Node *temp = head;
+    while(temp != NULL) {
+        cout << temp -> data << " ";
+        temp = temp -> next;
+    }
+    cout<<endl;
+}
+
+int main(){
+    Node *head = takeinput();
+    
+    head = NextLargeNumber(head);
+    print(head);
+    return 0;
+}
+```
